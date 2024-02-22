@@ -1,31 +1,25 @@
-const express = require('express');
-const { LoremIpsum } = require("lorem-ipsum");
-
+import express from 'express';
+import {
+    sentence
+} from 'txtgen';
 const app = express();
-const cors = require('cors'); 
-const PORT = process.env.PORT || 3000;
-app.use(cors());
+
 
 function genParagraph(sentences) {
-    const lorem = new LoremIpsum({
-        sentencesPerParagraph: {
-            max: sentences,
-            min: sentences
-        },
-        wordsPerSentence: {
-            max: 6,
-            min: 5
-        }
-    });
-    let paragraph = lorem.generateParagraphs(1);
+    let paragraph = '';
+    for(let i = 0; i < sentences; i++) {
+        paragraph += sentence() + '. ';
+    }
+    console.log(paragraph)
     return paragraph;
 }
 function capitalizeFirstLetter(sentence) {
     return sentence.charAt(0).toUpperCase() + sentence.slice(1);
 }
 app.get('/generate-paragraph', (req, res) => {
-    const sentences = parseInt(req.query.sentences) || 5;
-    const punctuations = req.query.punctuations === 'true'; 
+    const sentences = parseInt(req.query.sentences) || 3;
+    const punctuations = req.query.punctuations === 'true';
+    console.log(punctuations) 
     const capital = req.query.capital === 'true';
 
     let filteredText = genParagraph(sentences);
@@ -44,6 +38,4 @@ app.get('/generate-paragraph', (req, res) => {
     res.json({ paragraph: filteredText });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+app.listen(3000)

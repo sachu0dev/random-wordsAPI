@@ -2,6 +2,7 @@
   "name": "random-wordsapi",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +15,8 @@
     "express": "^4.18.2",
     "lorem-ipsum": "^2.0.8",
     "netlify-lambda": "^2.0.16",
-    "serverless-http": "^3.2.0"
+    "serverless-http": "^3.2.0",
+    "txtgen": "^3.0.6"
   }
+  
 }
