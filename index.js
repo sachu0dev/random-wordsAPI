@@ -40,4 +40,4 @@ app.get('/generate-paragraph', (req, res) => {
     res.json({ paragraph: filteredText });
 });
 
-app.listen(3000)
+app.listen(process.env.PORT||3000)
