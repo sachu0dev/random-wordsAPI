@@ -39,5 +39,7 @@ app.get('/generate-paragraph', (req, res) => {
 
     res.json({ paragraph: filteredText });
 });
-
+app.use((err,req,res,next)=>{
+    res.status(500).json({error:err.message})
+})
 app.listen(process.env.PORT||3000)
