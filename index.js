@@ -1,8 +1,8 @@
+import cors from 'cors';
 import express from 'express';
 import {
     sentence
 } from 'txtgen';
-const cors = require('cors');
 const app = express();
 app.use(cors())
 
